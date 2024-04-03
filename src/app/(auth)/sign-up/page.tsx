@@ -25,11 +25,11 @@ export default function Page() {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
-  const { data } = trpc.anyApiRoute.useQuery();
-  console.log(data);
+  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({});
+  // console.log(data);
 
   const onSubmit = ({ email, password }: TAuthCredientialsValidator) => {
-    // send data to the server
+    mutate({ email, password });
   };
 
   return (
