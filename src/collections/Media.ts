@@ -1,7 +1,7 @@
 import { User } from "../payload-types";
 import { Access, CollectionConfig } from "payload/types";
 
-// returns an access policy
+// returns an access policy... function that returns a function
 const isAdminOrHasAccessToImages =
   (): Access =>
   async ({ req }) => {
@@ -21,6 +21,7 @@ const isAdminOrHasAccessToImages =
 
 export const Media: CollectionConfig = {
   slug: "media",
+  // hooks are used to set relations
   hooks: {
     beforeChange: [
       ({ req, data }) => {
