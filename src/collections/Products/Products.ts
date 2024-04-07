@@ -1,5 +1,56 @@
+import { BeforeChangeHook } from "payload/dist/globals/config/types";
 import { PRODUCT_CATEGORIES } from "../../config";
-import { CollectionConfig } from "payload/types";
+import { CollectionBeforeChangeHook, CollectionConfig } from "payload/types";
+import { Product } from "../../payload-types";
+import { stripe } from "../../lib/stripe";
+
+// sets the user property of a product
+// BeforeChangeHook<Product> is an illegal operation
+const addUser: CollectionBeforeChangeHook = async ({ req, data }) => {
+  const user = req.user;
+
+  return { ...data, user: user.id };
+};
+
+const addStripeId: CollectionBeforeChangeHook = async (args) => {
+  // creating new product in stripe as well
+  if (args.operation === "create") {
+    const data = args.data as Product;
+
+    const createdProduct = await stripe.products.create({
+      name: data.name,
+      default_price_data: {
+        currency: "USD",
+        // cents
+        unit_amount: Math.round(data.price * 100),
+      },
+    });
+
+    const updated: Product = {
+      ...data,
+      stripeId: createdProduct.id,
+      priceId: createdProduct.default_price as string,
+    };
+
+    return updated;
+    // only want to update, not
+  } else if (args.operation === "update") {
+    const data = args.data as Product;
+
+    const updatedProduct = await stripe.products.update(data.stripeId!, {
+      name: data.name,
+      default_price: data.priceId!,
+    });
+
+    const updated: Product = {
+      ...data,
+      stripeId: updatedProduct.id,
+      priceId: updatedProduct.default_price as string,
+    };
+
+    return updated;
+  }
+};
 
 export const Products: CollectionConfig = {
   slug: "products",
@@ -7,6 +58,9 @@ export const Products: CollectionConfig = {
     useAsTitle: "name",
   },
   access: {},
+  hooks: {
+    beforeChange: [addUser, addStripeId],
+  },
   fields: [
     {
       name: "user",
@@ -71,6 +125,8 @@ export const Products: CollectionConfig = {
       ],
     },
     {
+      // TODO: different between this and price??
+      // created when a product is created; register it with stripe immediately to get also get back stripeId
       name: "priceId",
       access: {
         create: () => false,
