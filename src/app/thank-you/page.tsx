@@ -1,8 +1,11 @@
+// should be server component, to perform server side validation
+
+import PaymentStatus from "@/components/PaymentStatus";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { getPayloadClient } from "@/get-payload";
 import { getServerSideUser } from "@/lib/payload-utils";
 import { formatPrice } from "@/lib/utils";
-import { Product } from "@/payload-types";
+import { Product, User } from "@/payload-types";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -136,6 +139,12 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
                 <p className="text-base">{formatPrice(orderTotal + fee)}</p>
               </div>
             </div>
+
+            <PaymentStatus
+              isPaid={order._isPaid}
+              orderEmail={(order.user as User).email}
+              orderId={order.id}
+            />
 
             <div className="mt-16 border-t border-gray-200 py-6 text-right">
               <Link
