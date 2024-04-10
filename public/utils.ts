@@ -56,8 +56,7 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      // i dont have twitter
-      // creator: "@jlmonge",
+      creator: "@joshtriedcoding",
     },
     icons,
     // TODO: replace with prod url
