@@ -28,7 +28,7 @@ export const EmailTemplate = ({
   return (
     <Html>
       <Head />
-      <Preview>The marketplace for high-quality digital goods.</Preview>
+      <Preview>The marketplace for high-end hardware.</Preview>
       <Body style={main}>
         <Container style={container}>
           {/* todo: replace */}
@@ -41,8 +41,8 @@ export const EmailTemplate = ({
           />
           <Text style={paragraph}>Hi there,</Text>
           <Text style={paragraph}>
-            Welcome to DigitalHippo, the marketplace for high quality digital
-            goods. Use the button below to {actionLabel}.
+            Welcome to Maser, the marketplace for cutting-edge hardware. Use the
+            button below to {actionLabel}.
           </Text>
           <Section style={btnContainer}>
             <Button style={button} href={href}>
@@ -52,7 +52,7 @@ export const EmailTemplate = ({
           <Text style={paragraph}>
             Best,
             <br />
-            The DigitalHippo team
+            The Maser team
           </Text>
           <Hr style={hr} />
           <Text style={footer}>
