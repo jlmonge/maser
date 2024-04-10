@@ -61,7 +61,7 @@ export function constructMetadata({
     },
     icons,
     // TODO: replace with prod url
-    metadataBase: new URL("http://localhost:3000"),
+    metadataBase: new URL("https://maser-production.up.railway.app"),
     ...(noIndex && {
       robots: {
         index: false,

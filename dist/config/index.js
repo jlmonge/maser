@@ -8,18 +8,19 @@ exports.PRODUCT_CATEGORIES = [
         featured: [
             {
                 name: "Editor Picks",
-                href: "#",
-                imageSrc: "/nav/smartphones/mixed.jpg",
+                href: "/products?category=smartphones",
+                // TODO: convert to jpg for consistency or create other standard
+                imageSrc: "/nav/smartphones/editor.png",
             },
             {
                 name: "New Arrivals",
-                href: "#",
-                imageSrc: "/nav/smartphones/blue.jpg",
+                href: "/products?category=smartphones&sort=desc",
+                imageSrc: "/nav/smartphones/new.jpg",
             },
             {
                 name: "Best Sellers",
-                href: "#",
-                imageSrc: "/nav/smartphones/purple.jpg",
+                href: "/products?category=smartphones",
+                imageSrc: "/nav/smartphones/best.jpg",
             },
         ],
     },
@@ -29,18 +30,18 @@ exports.PRODUCT_CATEGORIES = [
         featured: [
             {
                 name: "Editor Picks",
-                href: "#",
-                imageSrc: "/nav/wearables/picks.jpg",
+                href: "/products?category=wearables",
+                imageSrc: "/nav/wearables/placeholder.png",
             },
             {
                 name: "New Arrivals",
-                href: "#",
-                imageSrc: "/nav/wearables/new.jpg",
+                href: "/products?category=wearables&sort=desc",
+                imageSrc: "/nav/wearables/placeholder.png",
             },
             {
                 name: "Best Sellers",
-                href: "#",
-                imageSrc: "/nav/wearables/bestsellers.jpg",
+                href: "/products?category=wearables",
+                imageSrc: "/nav/wearables/placeholder.png",
             },
         ],
     },
