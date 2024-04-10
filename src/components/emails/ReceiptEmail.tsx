@@ -45,6 +45,7 @@ export const ReceiptEmail = ({
         <Container style={container}>
           <Section>
             <Column>
+              {/* TODO: replace with logo */}
               <Img
                 src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-email-sent.png`}
                 width="100"
@@ -171,9 +172,7 @@ export const ReceiptEmail = ({
 };
 
 export const ReceiptEmailHtml = (props: ReceiptEmailProps) =>
-  render(<ReceiptEmail {...props} />, {
-    pretty: true,
-  });
+  render(<ReceiptEmail {...props} />, { pretty: true });
 
 const main = {
   fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
