@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "localhost",
-      //TODO: production url
-    ],
+    domains: ["localhost", "maser-production.up.railway.app"],
     // remotePatterns: [
     //   {
     //     hostname: "localhost",
